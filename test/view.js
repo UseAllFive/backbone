@@ -274,24 +274,6 @@
     ok(new View().$el.is('p'));
   });
 
-  test("views stopListening", 0, function() {
-    var View = Backbone.View.extend({
-      initialize: function() {
-        this.listenTo(this.model, 'all x', function(){ ok(false); }, this);
-        this.listenTo(this.collection, 'all x', function(){ ok(false); }, this);
-      }
-    });
-
-    var view = new View({
-      model: new Backbone.Model,
-      collection: new Backbone.Collection
-    });
-
-    view.stopListening();
-    view.model.trigger('x');
-    view.collection.trigger('x');
-  });
-
   test("Provide function for el.", 2, function() {
     var View = Backbone.View.extend({
       el: function() {
